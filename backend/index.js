@@ -1,18 +1,25 @@
 const express=require('express');
 const app=express();
+const cors = require('cors');
 const dotenv=require('dotenv');
+const connectDb=require('./config/db');
+const{NotFound,errorHandlder}=require('./middlware/errorMiddleware')
 dotenv.config();
-const port=process.env.PORT||4000;
+const port=process.env.PORT||5000;
 const {logger}=require('./middlware/logevents');
+const userRoutes=require('./routes/userRoutes');
+app.use(express.json());///to accept json 
+// app.use(logger);
+connectDb();
+// app.use('/',(req,res)=>{
+//     res.send('API is running');
+// })
+app.use(cors());
+app.use('/api/user',userRoutes);
 
-app.use(logger);
 
-app.use('/',(req,res)=>{
-    res.send('API is running');
-})
-
-
-
+app.use(NotFound);
+app.use(errorHandlder);
 
 
 
