@@ -8,6 +8,7 @@ dotenv.config();
 const port=process.env.PORT||5000;
 const {logger}=require('./middlware/logevents');
 const userRoutes=require('./routes/userRoutes');
+const chatRoutes=require('./routes/chatRoutes')
 app.use(express.json());///to accept json 
 // app.use(logger);
 connectDb();
@@ -16,10 +17,10 @@ connectDb();
 // })
 app.use(cors());
 app.use('/api/user',userRoutes);
+app.use('/api/chat',chatRoutes);
 
-
-app.use(NotFound);
-app.use(errorHandlder);
+// app.use(NotFound);
+// app.use(errorHandlder);
 
 
 
