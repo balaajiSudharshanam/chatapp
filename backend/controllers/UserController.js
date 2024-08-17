@@ -20,11 +20,11 @@ const registerUser = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error("User already exists");
     }
-    const hashedPWd=await bcrypt.hash(pwd,10);
+    const hashedPWd=await bcrypt.hash(password,10);
     const user = await User.create({
         name,
         email,
-        hashedPWd,
+        password,
         picture,
     });
 
@@ -45,7 +45,7 @@ const registerUser = asyncHandler(async (req, res) => {
  const authUser=asyncHandler(async(req,res)=>{
     const{email,password}=req.body;
     const user=await User.findOne({email});
-    console.log(password);
+    // console.log(password);
     if(user &&(user.matchPassword(password))){
         res.status(201).json({
             id: user._id,

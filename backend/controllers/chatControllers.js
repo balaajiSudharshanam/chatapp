@@ -57,12 +57,14 @@ const fetchChat = expressAsyncHandler(async (req, res) => {
             path: "latestMessage.sender",
             select: "name pic email"
         });
+        // console.log(populatedResults);
         res.status(200).send(populatedResults);
     } catch (error) {
         res.status(400);
         throw new Error(error.message);
     }
 });
+
 
 const createGroupChat = expressAsyncHandler(async (req, res) => {
     const { users, name } = req.body;
