@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ChatState } from '../Context/ChatProvider'
 import { Box, Flex } from '@chakra-ui/react';
 import SideDrawer from '../components/Authentication/SideDrawer';
@@ -8,6 +8,7 @@ import ChatBox from '../components/Authentication/ChatBox';
 
 const ChatsPage = () => {
   const {user}=ChatState();
+  const[fetchAgain,setFetchAgain]=useState(false);
   return (
     <div style={{width:'100%',height:"100%"}}>
       {user && <SideDrawer/>}
@@ -19,8 +20,8 @@ const ChatsPage = () => {
       height='91.5wh'
       p='10px'
       >
-        {user && <MyChats/>}
-        {user && <ChatBox/>}
+        {user && <MyChats fetchAgain={fetchAgain} />}
+        {user && <ChatBox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain}/>}
       </Box>
       {/* </Flex> */}
     </div>

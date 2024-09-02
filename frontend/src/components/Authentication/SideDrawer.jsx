@@ -55,7 +55,7 @@ const SideDrawer = () => {
 
       
       setLoading(false);
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       toast({
         title: "Error occurred",

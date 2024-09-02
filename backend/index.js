@@ -10,7 +10,7 @@ const {logger}=require('./middlware/logevents');
 const userRoutes=require('./routes/userRoutes');
 const chatRoutes=require('./routes/chatRoutes')
 app.use(express.json());///to accept json 
-// app.use(logger);
+app.use(logger);
 connectDb();
 // app.use('/',(req,res)=>{
 //     res.send('API is running');
