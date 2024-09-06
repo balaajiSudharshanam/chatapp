@@ -9,6 +9,7 @@ const port=process.env.PORT||5000;
 const {logger}=require('./middlware/logevents');
 const userRoutes=require('./routes/userRoutes');
 const chatRoutes=require('./routes/chatRoutes')
+const messageRoutes=require('./routes/messageRoutes');
 app.use(express.json());///to accept json 
 // app.use(logger);
 connectDb();
@@ -18,8 +19,9 @@ connectDb();
 app.use(cors());
 app.use('/api/user',userRoutes);
 app.use('/api/chat',chatRoutes);
+app.use('/api/messages',messageRoutes);
 
-// app.use(NotFound);
+// app.use(NotFound);https://github.com/feder-cr/linkedIn_auto_jobs_applier_with_AI?tab=readme-ov-file#usage
 // app.use(errorHandlder);
 
 
