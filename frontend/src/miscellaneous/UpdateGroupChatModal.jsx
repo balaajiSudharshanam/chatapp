@@ -18,7 +18,7 @@ import UserBadgeItem from '../components/Authentication/UserAvtar/UserBadgeItem'
 import axios from 'axios';
 import UserListItem from '../components/Authentication/UserAvtar/UserListItem';
 
-const UpdateGroupChatModal = ({fetchAgain,setFetchAgain}) => {
+const UpdateGroupChatModal = ({fetchAgain,setFetchAgain, fetchMessages}) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const[groupChatName,setGroupChatName]=useState('');
     const[search,setSearch]=useState("");
@@ -55,8 +55,8 @@ const handleRemove=async(user1)=>{
         },config)
         user1._id===user._id?setSelectedChat():setSelectedChat(data);
         
-
         setFetchAgain(!fetchAgain);
+        fetchMessages();
         setLoading(false);
     } catch (error) {
         console.log(error)

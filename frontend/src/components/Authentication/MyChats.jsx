@@ -48,7 +48,7 @@ const MyChats = ({fetchAgain}) => {
             alignItems="center"
             p={3}
             bg="white"
-            w={{ base: "100%", md: "31%" }}
+            w={{ base: "100vw", md: "31%" }}
             borderRadius="lg"
             borderWidth="1px"
             height="100%"
@@ -85,7 +85,8 @@ const MyChats = ({fetchAgain}) => {
                 overflow="hidden"
             >
                 {chats ? (
-                    <Stack overflowY='scroll'>
+                    <Stack overflowY='scroll'
+                    w="100%">
                         {chats.map((chat) => (
                           <Box
                           onClick={()=>setSelectedChat(chat)}
@@ -93,6 +94,7 @@ const MyChats = ({fetchAgain}) => {
                           bg={selectedChat===chat?"#38B2AC":"#E8E8E8"}
                           color={selectedChat==chat?"white":"black"}
                           px={3}
+                         
                           py={2}
                           borderRadius='lg'
                           key={chat._id}
