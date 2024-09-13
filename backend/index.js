@@ -10,8 +10,8 @@ const {logger}=require('./middlware/logevents');
 const userRoutes=require('./routes/userRoutes');
 const chatRoutes=require('./routes/chatRoutes')
 const messageRoutes=require('./routes/messageRoutes');
-app.use(express.json());///to accept json 
-// app.use(logger);
+const path=require('path');
+app.use(express.json());
 connectDb();
 // app.use('/',(req,res)=>{
 //     res.send('API is running');
@@ -21,8 +21,20 @@ app.use('/api/user',userRoutes);
 app.use('/api/chat',chatRoutes);
 app.use('/api/messages',messageRoutes);
 
-// app.use(NotFound);https://github.com/feder-cr/linkedIn_auto_jobs_applier_with_AI?tab=readme-ov-file#usage
-// app.use(errorHandlder);
+// --------------------------Deployment--------------------------------
+const __dirname1 = path.resolve();
+// app.use(express.static(process.cwd()+'/dist'));
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.resolve(__dirname1, '../frontend/dist')));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname1, '../frontend/dist', 'index.html'));
+  });
+} else {
+  app.get('/', (req, res) => {
+    res.send('API is Running successfully');
+  });
+}
 
 
 

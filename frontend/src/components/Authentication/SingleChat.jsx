@@ -22,8 +22,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [socketConnected, setSocketConnected] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
 
-  const typingRef = useRef(false);  // Ref to keep track of typing state
-  const lastTypingTimeRef = useRef(null);  // Ref to track the last typing time
+  const typingRef = useRef(false);  
+  const lastTypingTimeRef = useRef(null);  
   const defaultOptions={
     loop:true,
     autoplay:true,
@@ -33,7 +33,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     }
   }
   const toast = useToast();
-  const { user, selectedChat, setSelectedChat } = ChatState();
+  const { user, selectedChat, setSelectedChat,notification,setNotification } = ChatState();
 
   // Fetching messages
   const fetchMessages = async () => {
@@ -154,6 +154,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       console.log(newMessageRecieved);
       if (!selectedChatCompare || selectedChatCompare._id !== newMessageRecieved.chat._id) {
         //give notification
+        if(!notification.includes(newMessageRecieved)){
+          setNotification([newMessageRecieved,...notification]);
+          setFetchAgain(!fetchAgain);
+        }
+        
       } else {
         setMessages([...messages, newMessageRecieved]);
       }
