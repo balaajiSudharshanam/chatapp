@@ -7,6 +7,8 @@
     "cors": "^2.8.5",
     "date-fns": "^3.6.0",
     "express-async-handler": "^1.2.0",
+    "firebase-admin": "^12.5.0",
+    "firebase-functions": "^6.0.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.7.0",
     "mongoose": "^8.4.1",
@@ -14,11 +16,11 @@
     "uuid": "^9.0.1"
   },
   "scripts": {
-    "start":"node backend/index.js",
+    "start": "node backend/index.js",
     "frontend": "npm run dev --prefix frontend",
     "backend": "npm run dev --prefix backend",
     "dev": "concurrently \"npm run frontend\" \"npm run backend\"",
-    "build":"npm install && npm install --prefix frontend && npm run build --prefix frontend"
-
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
+    "render-postbuild": "npm install --prefix frontend --production=false && cd /opt/render/project/src/frontend && npm run build"
   }
 }
