@@ -43,7 +43,7 @@ const Signup = () => {
         body:data,
       }).then((res)=>res.json()
     
-    )
+    ) 
       .then(data=>{
         console.log('Success:', data); 
         setPic(data.url.toString());

@@ -70,7 +70,7 @@ const registerUser = asyncHandler(async (req, res) => {
         }
         : {};
 
-    const users = await User.find(keyword).find({ _id: { $ne: req.user._id } });
+    const users = await User.find(keyword).find({ id: { $ne: req.user.id } });
     res.send(users);
 });
 
